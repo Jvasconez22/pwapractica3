@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Adivinanzas</title>
+    <script>
+        function adivinarNumero() {
+            var respuesta = <?php echo rand(1, 10); ?>;
+            var intentos = 3; // Número de intentos permitidos
+            var mensaje = document.getElementById("mensaje");
+            
+            while (intentos > 0) {
+                var numero = parseInt(prompt("Adivina el número (entre 1 y 10):"));
+                
+                if (numero === respuesta) {
+                    mensaje.textContent = "¡Felicidades! Adivinaste el número " + respuesta + ".";
+                    break;
+                } else {
+                    if (numero < respuesta) {
+                        alert("El número es mayor. Intentos restantes: " + (--intentos));
+                    } else {
+                        alert("El número es menor. Intentos restantes: " + (--intentos));
+                    }
+                }
+            }
+            
+            if (intentos === 0) {
+                mensaje.textContent = "¡Agotaste tus intentos! El número era " + respuesta + ".";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Juego de Adivinanzas</h1>
+    <p>Haz clic en el botón para jugar:</p>
+    <button onclick="adivinarNumero()">Jugar</button>
+    <p id="mensaje"></p>
+</body>
+</html>
