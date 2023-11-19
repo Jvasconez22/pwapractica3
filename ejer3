@@ -1,0 +1,34 @@
+<?php
+// Archivo para almacenar el contador de visitas
+$archivoContador = "contador.txt";
+
+// Función para incrementar el contador
+function incrementarContador($archivoContador) {
+    if (file_exists($archivoContador)) {
+        $contador = (int) file_get_contents($archivoContador);
+        $contador++;
+    } else {
+        $contador = 1;
+    }
+    
+    file_put_contents($archivoContador, $contador);
+    
+    return $contador;
+}
+
+// Obtiene el número de visitas
+$visitas = incrementarContador($archivoContador);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Visitas</title>
+</head>
+<body>
+    <h1>Bienvenido a mi sitio web</h1>
+    <p>Esta página ha sido visitada <?php echo $visitas; ?> veces.</p>
+</body>
+</html>
