@@ -1,0 +1,31 @@
+<?php
+session_start();
+
+// Verificar si se han enviado datos del formulario
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Verificar la autenticación en la base de datos (debes implementar esto)
+    if (verificarAutenticacion($username, $password)) {
+        $_SESSION['username'] = $username;
+        header("Location: inicio.php"); // Redirigir a la página de inicio
+        exit();
+    } else {
+        echo "Nombre de usuario o contraseña incorrectos.";
+    }
+} else {
+    echo "Por favor, complete el formulario de inicio de sesión.";
+}
+
+// Función para verificar la autenticación en la base de datos (debes implementar esto)
+function verificarAutenticacion($username, $password) {
+    // Aquí debes escribir el código para consultar la base de datos y verificar las credenciales del usuario
+    // Retorna true si la autenticación es exitosa, de lo contrario, retorna false
+    // Ejemplo:
+    // $db = new mysqli('localhost', 'usuario', 'contraseña', 'basededatos');
+    // $query = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password'";
+    // $result = $db->query($query);
+    // return $result->num_rows > 0;
+}
+?>
