@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        /* Estilos para la galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
+            gap: 10px; /* Espacio entre las imágenes */
+        }
+
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1); /* Efecto de zoom al pasar el mouse sobre la imagen */
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="gallery">
+        <?php
+        // Directorio donde se encuentran las imágenes
+        $directorio = "imagenes/";
+
+        // Obtener la lista de archivos en el directorio de imágenes
+        $archivos = scandir($directorio);
+
+        // Recorrer los archivos y mostrar las imágenes
+        foreach ($archivos as $archivo) {
+            if ($archivo !== "." && $archivo !== "..") {
+                echo '<img src="' . $directorio . $archivo . '" alt="' . $archivo . '">';
+            }
+        }
+        ?>
+    </div>
+</body>
+</html>
